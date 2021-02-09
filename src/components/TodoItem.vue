@@ -1,53 +1,45 @@
 <template>
-<li class="todo-item">
-  <div class="container">
-    <input type="checkbox" v-bind:checked="todoData.done">
-    <span class="checkbox" @click="check"></span>
-  </div>
-  <p :class="{done: todoData.done}">{{todoData.content}}</p>
-  <button v-on:click="removeTodo">X</button>
-</li>
+  <li class="todo-item">
+    <div class="container">
+      <input type="checkbox" v-bind:checked="todoData.done" />
+      <span class="checkbox" @click="$emit('checkTodo')"></span>
+    </div>
+    <p :class="{ done: todoData.done }">{{ todoData.content }}</p>
+    <button @click="$emit('removeTodo')">X</button>
+  </li>
 </template>
 
 <script>
 export default {
-    props: {
-        todoData: Object
-    },
-    methods:{
-        check(){
-            this.$emit('checkTodo')
-        },
-        removeTodo(){
-            this.$emit('removeTodo')
-        }
-    }
-}
+  props: {
+    todoData: Object,
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.todo-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: lightgrey;
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
 
-    p{
-      width: 100%;
-      white-space: nowrap;
-      position: relative;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.8rem;
-      &.done{text-decoration: line-through;}
-      
+  p {
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    &.done {
+      text-decoration: line-through;
     }
-
+  }
 }
-.todo-item > *{
-    margin: 0.5rem;
+.todo-item > * {
+  margin: 0.5rem;
 }
 
-button{
+button {
   border: 0;
   outline: none;
   /* padding: 0.5rem; */
@@ -58,11 +50,11 @@ button{
   color: grey;
   cursor: pointer;
   transition: background-color 0.25s, color 0.25s;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 
-  &:hover{
+  &:hover {
     color: red;
-    background-color: #EEE;
+    background-color: #eee;
   }
 }
 .container {
@@ -117,7 +109,7 @@ button{
 .container .checkbox:after {
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
   width: 10px;
   height: 5px;
   border: solid #333;
