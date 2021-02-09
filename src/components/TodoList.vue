@@ -51,6 +51,11 @@ export default {
     },
     checkTodo(todo) {
       todo.done = !todo.done;
+      setTimeout(() => {
+        this.$store.state.todos = this.$store.state.todos.filter(
+          (element) => element.id != todo.id
+        );
+      }, 300);
     },
     removeTodo(todo) {
       this.$store.state.todos = this.$store.state.todos.filter(
